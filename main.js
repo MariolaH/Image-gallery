@@ -21,21 +21,31 @@ const altText = {
 
 /* Looping through images */
 
-
-for (const images of imgArray) {
-const newImage = document.createElement('img');
+for (const image of imgArray) {
+    const newImage = document.createAttribute('img');
 newImage.setAttribute('src', imgArray);
 newImage.setAttribute('alt', altText);
 thumbBar.appendChild(newImage);
-
-// newImage.addEventListener ('click', e =>{
-//     displayedImgage.src = e.target.src;
-//     displayedImgage.src = e.target.alt;
-// }
-//     );
+newImage.addEventlistner ('click', () ==> {
+displayedImage.src = imgArray
+displayedImage.alt = altText
+}
+);
 }
 
 /* Wiring up the Darken/Lighten button */
 
-btn.getattribute(dark)
-
+btn.addEventListener("click", updateOverlay);
+function updateOverlay(event) {
+  const curBtn = event.target;
+  const btnClass = curBtn.setAttribute("class");
+  if (btnClass === "dark") {
+    curBtn.setAttribute("class", "light");
+    curBtn.textContent = "lighten";
+    overlay.style.backgroundColor = "rgba(0,0,0,0.5)";
+  } else {
+    curBtn.setAttribute("class", "dark");
+    curBtn.textContent = "Darken";
+    overlay.style.backgroundColor = "rgba(0,0,0,0)";
+  }
+}
